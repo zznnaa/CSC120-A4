@@ -18,7 +18,7 @@ For this assignment, you'll be writing four interrelated classes:
  - The `Car` class (`Car.java`) will be used as a container for `Passenger` objects
  - and the `Train` (`Train.java`) class will tie them all together
  
- You'll also notice a 5th file in the repository (`FuelType.java`), which contains something that looks like a super simple class:
+ You'll also notice a 5th file in the repository (`FuelType.java`), which contains something that looks like an extremely simple class:
  ```
 public enum FuelType {
     STEAM, INTERNAL_COMBUSTION, ELECTRIC, OTHER;
@@ -42,6 +42,7 @@ Let's pause a moment to think about the different kinds of relationships we'll w
  We recommend you start by implementing the `Engine` class. Your `Engine` class will need:
  
   - a private `FuelType` attribute to indicate what type of fuel it uses, and `double`s to store the current and maximum fuel levels (along with an approproate accessors for each)
+  - a constructor, which takes in initial values for the attributes named above and sets them appropriately
   - a method `public void refuel()` which will reset the `Engine`'s current fuel level to the maximum
   - a method `public void go()` which will decrease the current fuel level and print some useful information (e.g. remaining fuel level) provided the fuel level is above 0 (otherwise it should throw a `RuntimeException` containing an informative message)
  
@@ -59,6 +60,24 @@ You can use the `main` method defined below as a starting point for testing:
     }
 ```
 
-## Step 2: The `Passenger` class
- 
+## Step 2: the `Car` class
+Next, we'll set to work on the `Car` class. The `Car` class will need:
+
+ - a private `ArrayList` where it will store the `Passenger`s currently onboard, and an `int` for the `Car`'s maximum capacity (since `ArrayList`s will expand as we add objects, we'll need to manually limit their size)
+ -   - a constructor, which takes in an initial value for the `Car`'s maximum capacity and initializes an appropriately-sized `ArrayList`
+ - accessor-like methods `public int getCapacity()` and `public int seatsRemaining()` that return the maximum capacity and remaining seats, respectively
+ - methods `public void addPassenger(Passenger p)` and `public void removePassenger(Passenger p)` to add or remove a `Passenger` from the `Car` (_Hint: don't forget to check that there are seats available if someone wants to board, and to confirm that the `Passenger` is actually onboard before trying to remove them! If you encounter a problem, throw a `RuntimeException`._)
+ - and a final method `public void printManifest()` that prints out a list of all `Passenger`s aboard the car (or "This car is EMPTY." if there is no one on board)
+
+## Step 3: completing the `Passenger` class
+Now that you've got a functional `Car` class, the `Passenger` class can be expanded to use the `Car`'s methods to implement some of its own:
+
+ - `public void boardCar(Car c)` can call `c.addPassenger(this)` to board a given `Car` (_Hint: this method should be ready to `catch` the `RuntimeException` that will be thrown by `c.addPassenger(...)` in the event that the car is full._)
+ - `public void getOffCar(Car c)` can call `c.removePassenger(this)` to get off a given `Car` (_Hint: this method should be ready to `catch` the `RuntimeException` that will be thrown by `c.removePassenger(...)` in the event that the `Passenger` wasn't actually onboard._)
+
+## Step 4: the `Train` class
+Now we're in the home stretch! To assemble your `Train`, you'll need:
+
+ -  a private `Engine` attribute, which we will mark with the keyword `final` to establish the **composition** relationship \n (e.g. `private final Engine engine;`)
+ -  
   
