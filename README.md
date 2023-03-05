@@ -3,7 +3,7 @@
 ## Outline
 In this assignment, we'll explore Association by building a virtual Train!
 
-![A cartoon train with an engine and three passenger cars](https://raw.githubusercontent.com/jcrouser/CSC120/0e8c76db29bdc5fc7558551442b942440b0ae452/img/train.png?token=GHSAT0AAAAAAB6EBA3IXCQADI2VU7KMMOOQZABLY7A)
+![A cartoon train with an engine and three passenger cars](https://jcrouser.github.io/CSC120/img/train.jpeg)
 
 As before, all the files necessary for this assignment are contained within this repository. When you submit, please remember to include:
 
