@@ -42,7 +42,7 @@ Let's pause a moment to think about the different kinds of relationships we'll w
  ## Step 1: The `Engine` class
  We recommend you start by implementing the `Engine` class. Your `Engine` class will need:
  
-  - a private `FuelType` attribute to indicate what type of fuel it uses, and `double`s to store the current and maximum fuel levels (along with an approproate accessors for each)
+  - a private `FuelType` attribute to indicate what type of fuel it uses, and `double`s to store the current and maximum fuel levels (along with an appropriate accessors for each)
   - a constructor, which takes in initial values for the attributes named above and sets them appropriately
   - a method `public void refuel()` which will reset the `Engine`'s current fuel level to the maximum
   - a method `public void go()` which will decrease the current fuel level and print some useful information (e.g. remaining fuel level) provided the fuel level is above 0 (otherwise it should throw a `RuntimeException` containing an informative message)
