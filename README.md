@@ -1,7 +1,7 @@
-# CSC120-A5: Bringing it All Together
+# CSC120-A5: Chugging Along
 
 ## Outline
-In this assignment, we'll explore Association by building a virtual Train!
+In this assignment, we'll explore **Encapsulation** by building a virtual Train!
 
 ![A cartoon train with an engine and three passenger cars](https://jcrouser.github.io/CSC120/img/train.png)
 
@@ -35,56 +35,60 @@ FuelType f = FuelType.ELECTRIC;
  
 Let's pause a moment to think about the different kinds of relationships we'll want to establish:
 
- - The `Train` class should have a **composition** relationship with the `Engine` class (if you remove the `Engine`, it ceases to be a `Train`, and if you destroy the `Train`, you get rid of the `Engine` as well).
- - The `Train` class has an **aggregation** relationship with the `Car` class (the `Train` has a collection of `Cars` associated with it at any given time, but you can add / remove `Cars` without destroying either the `Train` or the `Cars` themselves).
- - The `Passenger` class has **association** relationships with the `Car` class (`Passenger`s board `Car`s as their means of using the `Train` to move around more efficiently).
+ - The `Train` class will have a relationship with the `Engine` class, because the `Engine` is responsible for powering the `Train`.
+ - The `Train` class also has a relationship with the `Car` class: the `Train` has a collection of `Cars` associated with it at any given time, and you can add / remove `Cars` as necessary (without destroying either the `Train` or the `Cars` themselves).
+ - The `Passenger` class has relationships with both the `Car` and `Train` classes (`Passenger`s board `Car`s as their means of using the `Train` to move around more efficiently).
  
  ## Step 1: The `Engine` class
  We recommend you start by implementing the `Engine` class. Your `Engine` class will need:
  
-  - a private `FuelType` attribute to indicate what type of fuel it uses, and `double`s to store the current and maximum fuel levels (along with an appropriate accessors for each)
+  - a `FuelType` attribute to indicate what type of fuel it uses, and `double`s to store the current and maximum fuel levels (along with appropriate accessors for each).
   - a constructor, which takes in initial values for the attributes named above and sets them appropriately
-  - a method `public void refuel()` which will reset the `Engine`'s current fuel level to the maximum
-  - a method `public void go()` which will decrease the current fuel level and print some useful information (e.g. remaining fuel level) provided the fuel level is above 0 (otherwise it should throw a `RuntimeException` containing an informative message)
+  - a `refuel()` method which will reset the `Engine`'s current fuel level to the maximum, and which doesn't need to `return` anything
+  - a `go()` which will decrease the current fuel level, print some useful information (e.g. remaining fuel level), and return `True` if the fuel level is above 0 and `False` otherwise.
+
+Remember, OOP is all about deciding which classes are responsible for which parts of the end solution. As you program, consider which of these attributes/methods should be `public`, and which should be `private`. These questions may be helpful to ask yourself:
+ - Does **another class** need to be able to **read** this value? (If so, it could either be marked `public` or have an `accessor`)
+ - Does **another class** need to be able to **modify** this value? (If so, it could either be marked `public` or have a `manipulator`)
+
  
 You can use the `main` method defined below as a starting point for testing:
  ```
     public static void main(String[] args) {
         Engine myEngine = new Engine(FuelType.ELECTRIC, 100.0);
-        try {
-            while (true) {
-                myEngine.go();
-            }
-        } catch (Exception e) {
-            System.err.println(e.getMessage()); // Out of fuel
+        while (myEngine.go()) {
+            System.out.println("Choo choo!");
         }
+        System.out.println("Out of fuel.");
     }
 ```
 
 ## Step 2: the `Car` class
 Next, we'll set to work on the `Car` class. The `Car` class will need:
 
- - a private `ArrayList` where it will store the `Passenger`s currently onboard, and an `int` for the `Car`'s maximum capacity (since `ArrayList`s will expand as we add objects, we'll need to manually limit their size)
- -   - a constructor, which takes in an initial value for the `Car`'s maximum capacity and initializes an appropriately-sized `ArrayList`
+ - an `ArrayList` where it will store the `Passenger`s currently onboard, and an `int` for the `Car`'s maximum capacity (since `ArrayList`s will expand as we add objects, we'll need to manually limit their size)
+ - a constructor, which takes in an initial value for the `Car`'s maximum capacity and initializes an appropriately-sized `ArrayList`
  - accessor-like methods `public int getCapacity()` and `public int seatsRemaining()` that return the maximum capacity and remaining seats, respectively
- - methods `public void addPassenger(Passenger p)` and `public void removePassenger(Passenger p)` to add or remove a `Passenger` from the `Car` (_Hint: don't forget to check that there are seats available if someone wants to board, and to confirm that the `Passenger` is actually onboard before trying to remove them! If you encounter a problem, throw a `RuntimeException`._)
- - and a final method `public void printManifest()` that prints out a list of all `Passenger`s aboard the car (or "This car is EMPTY." if there is no one on board)
+ - `addPassenger(Passenger p)` and `removePassenger(Passenger p)` methods to add or remove a `Passenger` from the `Car` and return `True` if the operation was successful, and `False` otherwise. (_Hint: don't forget to check that there are seats available if someone wants to board, and to confirm that the `Passenger` is actually onboard before trying to remove them! If you encounter a problem, you should `return False`._)
+ - and a final method `printManifest()` that prints out a list of all `Passenger`s aboard the car (or "This car is EMPTY." if there is no one on board).
+
+As before, consider which of these should be `public` and which should be `private` (potentially with `accessor`s and/or `manipulator`s).
 
 ## Step 3: completing the `Passenger` class
 Now that you've got a functional `Car` class, the `Passenger` class can be expanded to use the `Car`'s methods to implement some of its own:
 
- - `public void boardCar(Car c)` can call `c.addPassenger(this)` to board a given `Car` (_Hint: this method should be ready to `catch` the `RuntimeException` that will be thrown by `c.addPassenger(...)` in the event that the car is full._)
- - `public void getOffCar(Car c)` can call `c.removePassenger(this)` to get off a given `Car` (_Hint: this method should be ready to `catch` the `RuntimeException` that will be thrown by `c.removePassenger(...)` in the event that the `Passenger` wasn't actually onboard._)
+ - `boardCar(Car c)` can call `c.addPassenger(this)` to board a given `Car` (_Hint: this method should check the value that gets `return`ed by `c.addPassenger(...)` in case the selected car is full._)
+ - `getOffCar(Car c)` can call `c.removePassenger(this)` to get off a given `Car` (_Hint: this method should check the value that gets `return`ed by `c.removePassenger(...)` in case the `Passenger` wasn't actually onboard._)
 
 ## Step 4: the `Train` class
 Now we're in the home stretch! To assemble your `Train`, you'll need (at minimum):
 
- -  a private `Engine` attribute, which we will mark with the keyword `final` to establish the **composition** relationship (e.g. `private final Engine engine;`)
- -  a private `ArrayList` to keep track of the `Car`s currently attached
- -  a constructor `public Train(FuelType fuelType, double fuelCapacity, int nCars, int passengerCapacity)` which will initialize the `Engine` and `Car`s and store them
- -  a couple of accessors: 
+ -  an `Engine`
+ -  an `ArrayList` to keep track of the `Car`s currently attached
+ -  a constructor `Train(FuelType fuelType, double fuelCapacity, int nCars, int passengerCapacity)` which will initialize the `Engine` and `Car`s and store them
+ -  a few accessors: 
      -  `public Engine getEngine()`
      -  `public Car getCar(int i)` to return the `i`th car
      -  `public int getMaxCapacity()` which will return the maximum total capacity across all `Car`s
      -  `public int seatsRemaining()` which will return the number of remaining open seats across all `Car`s
-- and finally, its own `public void printManifest()` that prints a roster of all `Passenger`s onboard (_Hint: your `Car`s can help!_)
+- and finally, its own `printManifest()` that prints a roster of all `Passenger`s onboard (_Hint: ask your `Car`s to help!_)
