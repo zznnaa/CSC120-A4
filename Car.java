@@ -3,8 +3,8 @@ import java.util.ArrayList;
 public class Car {
 
     //attributes
-    ArrayList<Passenger> passengerList;
-    int maxCap;
+    private ArrayList<Passenger> passengerList;
+    private int maxCap;
 
     //constructor
     public Car(int maxCap){
@@ -70,6 +70,3 @@ public class Car {
     }
 }
 
-
-//what attributes need to be private or public
-//where can you see what passengers on car
