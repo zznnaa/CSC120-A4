@@ -53,7 +53,19 @@ public class Car {
 
     public static void main(String[] args) {
         Car mycar = new Car(5);
-        System.out.println(mycar.passengerList);
+        System.out.println(mycar.getCapacity());
+        System.out.println(mycar.seatsRemaining());
+        Passenger pass1 = new Passenger("Zoe");
+        mycar.addPassenger(pass1);
+        if (mycar.addPassenger(pass1) == true){
+            System.out.println("complete");
+        }
+        mycar.printManifest();
+        mycar.removePassenger(pass1);
+        if (mycar.removePassenger(pass1) == true){
+            System.out.println("complete");
+        }
+        mycar.printManifest();
     }
 }
 
