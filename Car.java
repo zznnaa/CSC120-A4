@@ -35,8 +35,9 @@ public class Car {
     public void printManifest(){
         if (this.passengerList.size() > 0){
             System.out.println(this.passengerList);
-            // for (i=0, this.passengerList < i, i++){
-            //     System.out.println(this.passengerList);
+            // for (Passenger passenger: this.passengerList){
+            //     System.out.println(passenger);
+            // }
         } else {
             System.out.println("This car is EMPTY.");
         }
@@ -71,3 +72,4 @@ public class Car {
 
 
 //what attributes need to be private or public
+//where can you see what passengers on car
