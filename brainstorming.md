@@ -6,3 +6,5 @@
  - Does **another class** need to be able to **modify** this value? (If so, it could either be marked `public` or have a `manipulator`)
 
  Train will need to be able to read fueltype, read maxfuel, and current fuel
+
+ 
