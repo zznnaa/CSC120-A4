@@ -33,11 +33,13 @@ public class Car {
     }
 
     public void printManifest(){
+        int count = 0;
         if (this.passengerList.size() > 0){
-            System.out.println(this.passengerList);
-            // for (Passenger passenger: this.passengerList){
-            //     System.out.println(passenger);
-            // }
+            System.out.println("Manifest:");
+            for (Passenger passenger: this.passengerList){
+                count += 1;
+                System.out.println(count + ". " + passenger.getName());
+            }
         } else {
             System.out.println("This car is EMPTY.");
         }
@@ -53,20 +55,20 @@ public class Car {
     }
 
     public static void main(String[] args) {
-        Car mycar = new Car(5);
-        System.out.println(mycar.getCapacity());
-        System.out.println(mycar.seatsRemaining());
+        Car carA = new Car(5);
+        System.out.println(carA.getCapacity());
+        System.out.println(carA.seatsRemaining());
         Passenger pass1 = new Passenger("Zoe");
-        mycar.addPassenger(pass1);
-        if (mycar.addPassenger(pass1) == true){
+        carA.addPassenger(pass1);
+        if (carA.addPassenger(pass1) == true){
             System.out.println("complete");
         }
-        mycar.printManifest();
-        mycar.removePassenger(pass1);
-        if (mycar.removePassenger(pass1) == true){
+        carA.printManifest();
+        carA.removePassenger(pass1);
+        if (carA.removePassenger(pass1) == true){
             System.out.println("complete");
         }
-        mycar.printManifest();
+        carA.printManifest();
     }
 }
 

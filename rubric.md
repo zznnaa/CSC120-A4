@@ -22,11 +22,11 @@ Listed below are various aspects of the assignment.  When you turn in your work,
 
 ### Level 2 (3 pts)
 
-_____ 1 pt: The `Car` class contains appropriately-encapsulated attributes to store information about its capacity and current `Passenger`s
+**YES** 1 pt: The `Car` class contains appropriately-encapsulated attributes to store information about its capacity and current `Passenger`s
 
-_____ 1 pt: The `Car` class has functional `addPassenger(...)` and `removePassenger(...)` methods
+**YES** 1 pt: The `Car` class has functional `addPassenger(...)` and `removePassenger(...)` methods
 
-_____ 1 pt: The `Car` class has a `printManifest()` method that prints a nicely-formatted roster of all `Passenger`s currently aboard the car
+**NO** 1 pt: The `Car` class has a `printManifest()` method that prints a nicely-formatted roster of all `Passenger`s currently aboard the car
 
 ### Level 3 (3 pts)
 
