@@ -26,11 +26,11 @@ Listed below are various aspects of the assignment.  When you turn in your work,
 
 **YES** 1 pt: The `Car` class has functional `addPassenger(...)` and `removePassenger(...)` methods
 
-**NO** 1 pt: The `Car` class has a `printManifest()` method that prints a nicely-formatted roster of all `Passenger`s currently aboard the car
+**YES** 1 pt: The `Car` class has a `printManifest()` method that prints a nicely-formatted roster of all `Passenger`s currently aboard the car
 
 ### Level 3 (3 pts)
 
-_____ 1 pt: The `Passenger` class uses appropriate methods from the `Car` class to implement its `boardCar(...)` and `getOffCar(...)` methods
+**YES** 1 pt: The `Passenger` class uses appropriate methods from the `Car` class to implement its `boardCar(...)` and `getOffCar(...)` methods
 
 _____ 1 pt: The `Train` class has all expected attributes / relationships with the other classes
 

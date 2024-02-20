@@ -15,7 +15,7 @@ public class Passenger {
     public void boardCar(Car c){
         boolean hold = c.addPassenger(this);
         if (hold == true){
-            System.out.println("Passenger " + this.name + " was added to " + c + "!");
+            System.out.println("Passenger " + this.name + " was added to " + c.getName() + "!");
         } else {
             System.out.println("The car you selected is full!");
         }
@@ -25,7 +25,7 @@ public class Passenger {
     public void getOffCar(Car c){
         boolean hold = c.removePassenger(this);
         if (hold == true){
-            System.out.println("Passenger " + this.name + " was removed from " + c + ".");
+            System.out.println("Passenger " + this.name + " was removed from " + c.getName() + ".");
         } else {
             System.out.println("The passenger you selected is not on board.");
         }

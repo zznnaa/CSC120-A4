@@ -5,11 +5,13 @@ public class Car {
     //attributes
     private ArrayList<Passenger> passengerList;
     private int maxCap;
+    private String name;
 
     //constructor
     public Car(int maxCap){
         this.maxCap = maxCap;
         this.passengerList = new ArrayList<Passenger>(maxCap);
+        this.name = "UnassignedCar";
 
     }
 
@@ -52,6 +54,14 @@ public class Car {
 
     public int seatsRemaining(){
         return this.maxCap - this.passengerList.size();
+    }
+
+    public String getName(){
+        return this.name;
+    }
+
+    public void assignName(String newName){
+        this.name = newName;
     }
 
     public static void main(String[] args) {
