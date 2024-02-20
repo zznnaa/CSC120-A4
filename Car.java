@@ -37,13 +37,13 @@ public class Car {
     public void printManifest(){
         int count = 0;
         if (this.passengerList.size() > 0){
-            System.out.println("Manifest:");
+            System.out.println("\tPassengers:");
             for (Passenger passenger: this.passengerList){
                 count += 1;
-                System.out.println(count + ". " + passenger.getName());
+                System.out.println("\t" + count + ". " + passenger.getName());
             }
         } else {
-            System.out.println("This car is EMPTY.");
+            System.out.println("\t" + "This car is EMPTY.");
         }
     }
 

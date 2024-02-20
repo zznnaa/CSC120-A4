@@ -3,8 +3,8 @@ import java.util.ArrayList;
 public class Train {
 
     //attributes
-    Engine engine;
-    ArrayList<Car> carList;
+    private Engine engine;
+    private ArrayList<Car> carList;
 
     //constructor
     public Train(FuelType fuelType, double fuelCapacity, int nCars, int passengerCapacity){
@@ -22,22 +22,48 @@ public class Train {
     }
 
     //methods
+    public void printManifest(){
+        System.out.println("Manifest:");
+        for (Car car:carList){
+            System.out.println(car.getName() + ":");
+            car.printManifest();
+        }
+        System.out.println();
+    }
 
+    //getters
+    public Engine getEngine(){
+        return this.engine;
+    }
 
-    //setters and getters
+    public Car getCar(int i){
+        return this.carList.get(i);
+    }
 
+    public int getMaxCapacity(){
+        int maxCap = 0;
+        for (Car car:this.carList){
+            maxCap += car.getCapacity();
+        }
+        return maxCap;
+    }
+    
+    public int seatsRemaining(){
+        int seatsLeft = 0;
+        for (Car car:this.carList){
+            seatsLeft += car.seatsRemaining();
+        }
+    return seatsLeft;
+    }
 
     public static void main(String[] args) {
         Train train = new Train(FuelType.ELECTRIC, 100.0, 3, 5);
-        for (Car car:train.carList){
-            System.out.println(car.getName());
-        }
+        
+        train.printManifest();
     }
 }
 
-//  -  an `Engine`
-//  -  an `ArrayList` to keep track of the `Car`s currently attached
-//  -  a constructor `Train(FuelType fuelType, double fuelCapacity, int nCars, int passengerCapacity)` which will initialize the `Engine` and `Car`s and store them
+
 //  -  a few accessors: 
 //      -  `public Engine getEngine()`
 //      -  `public Car getCar(int i)` to return the `i`th car
