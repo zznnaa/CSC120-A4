@@ -31,6 +31,14 @@ public class Train {
         System.out.println();
     }
 
+    //add car method
+    //remove car method
+        //can't remove if people on the car
+        //make passengers get off car
+    
+    //load passengers on train
+    //automate creation and loading of passengers
+
     //getters
     public Engine getEngine(){
         return this.engine;
@@ -58,8 +66,8 @@ public class Train {
 
     public static void main(String[] args) {
         Train train = new Train(FuelType.ELECTRIC, 100.0, 3, 5);
-        
         train.printManifest();
+        train.carList.
     }
 }
 
