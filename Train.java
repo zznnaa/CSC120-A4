@@ -32,12 +32,37 @@ public class Train {
     }
 
     //add car method
+    public void addCar(){
+        int count = this.carList.size() + 1;
+        Car newCar = new Car(this.carList.get(0).getCapacity());
+        String newName = "Car" + String.valueOf(count);
+        newCar.assignName(newName);
+        //need to expand size of array to be able to add new cars
+        this.carList.add(newCar);
+    }
+
     //remove car method
-        //can't remove if people on the car
-        //make passengers get off car
-    
-    //load passengers on train
-    //automate creation and loading of passengers
+    public void removeCar(int i){
+        //change i from Car # to Car INDEX #
+        i -= 1;
+        //check if car in train
+        if (i <= this.carList.size()){
+            //check if people on car
+            if (this.carList.get(i).passengerList.size() > 0){
+            //remove passengers from car
+            for (Passenger p:this.carList.get(i).passengerList){
+                p.getOffCar(this.carList.get(i));
+            }
+        }
+        //remove car
+        this.carList.remove(i);
+        } else {
+            System.out.println("That car is not contained in the train.");
+        } 
+    }
+
+    //REMOVE METHOD THROWING CONCURRENT MODIFICATION ERROR SO NEED TO USE AN ITERATOR
+    //MAKE METHOD TO UPDATE NAMES OF CARS SO THEYRE ACCURATE AFTER REMOVAL
 
     //getters
     public Engine getEngine(){
@@ -49,10 +74,9 @@ public class Train {
     }
 
     public int getMaxCapacity(){
-        int maxCap = 0;
-        for (Car car:this.carList){
-            maxCap += car.getCapacity();
-        }
+        int size = this.carList.size();
+        int carCap = this.carList.get(0).getCapacity();
+        int maxCap = size * carCap;
         return maxCap;
     }
     
@@ -66,15 +90,12 @@ public class Train {
 
     public static void main(String[] args) {
         Train train = new Train(FuelType.ELECTRIC, 100.0, 3, 5);
+        Passenger pass1 = new Passenger("Zoe");
+        pass1.boardCar(train.carList.get(3));
+        train.addCar();
         train.printManifest();
-        train.carList.
+        train.removeCar(4);
+        train.printManifest();
+        //load 4 passengers on the train
     }
 }
-
-
-//  -  a few accessors: 
-//      -  `public Engine getEngine()`
-//      -  `public Car getCar(int i)` to return the `i`th car
-//      -  `public int getMaxCapacity()` which will return the maximum total capacity across all `Car`s
-//      -  `public int seatsRemaining()` which will return the number of remaining open seats across all `Car`s
-// - and finally, its own `printManifest()` that prints a roster of all `Passenger`s onboard (_Hint: ask your `Car`s to help!_)

@@ -3,7 +3,7 @@ import java.util.ArrayList;
 public class Car {
 
     //attributes
-    private ArrayList<Passenger> passengerList;
+    ArrayList<Passenger> passengerList;
     private int maxCap;
     private String name;
 

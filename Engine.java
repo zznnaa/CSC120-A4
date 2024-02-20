@@ -56,9 +56,3 @@ public class Engine {
         System.out.println("Out of fuel.");
     }
 }
-
-
-
-// - appropriate accessors for fuel type, current fuel, max fuel
-
-// Remember, OOP is all about deciding which classes are responsible for which parts of the end solution. As you program, consider which of these attributes/methods should be `public`, and which should be `private`. These questions may be helpful to ask yourself:
