@@ -11,20 +11,28 @@ public class Passenger {
         return this.name;
     }
     
-    //board car - check return to see if car already full
+    /**
+     * Tells a passenger to board a car.
+     * @param c The car you want the passenger to board.
+     */
     public void boardCar(Car c){
-        boolean hold = c.addPassenger(this);
-        if (hold == true){
+        //calls the addPassenger function on the car for this object
+        boolean call = c.addPassenger(this);
+        if (call == true){
             System.out.println("Passenger " + this.name + " was added to " + c.getName() + "!");
         } else {
             System.out.println("The car you selected is full!");
         }
     }
 
-    //getoff car - check return to see if passenger wasn't on board
+    /**
+     * Tells a passenger to get off a car.
+     * @param c The car you want the passenger to leave.
+     */
     public void getOffCar(Car c){
-        boolean hold = c.removePassenger(this);
-        if (hold == true){
+        //calls the removePassenger function on the car for this object
+        boolean call = c.removePassenger(this);
+        if (call == true){
             System.out.println("Passenger " + this.name + " was removed from " + c.getName() + ".");
         } else {
             System.out.println("The passenger you selected is not on board.");

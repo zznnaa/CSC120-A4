@@ -16,8 +16,16 @@ public class Car {
     }
 
     //methods
+    
+    /**
+     * Adds a passenger to the car.
+     * @param p The passenger you want to add.
+     * @return T/F if the passenger was successfully added to the car.
+     */
     public boolean addPassenger(Passenger p){
+        //check whether enough seats left on board
         if (this.passengerList.size() < maxCap){
+            //add passenger
             this.passengerList.add(p);
             return true;
         } else {
@@ -25,8 +33,15 @@ public class Car {
         }
     }
     
+    /**
+     * Removes a passenger from the car.
+     * @param p The passenger you want to remove.
+     * @return T/F whether the passenger was successfully removed.
+     */
     public boolean removePassenger(Passenger p){
+        //check if passenger list of car contains p
         if(this.passengerList.contains(p)){
+            //remove p
             this.passengerList.remove(p);
             return true;
         } else {
@@ -34,11 +49,17 @@ public class Car {
         }
     }
 
+    /**
+     * Prints the manifest of everyone on board the car.
+     */
     public void printManifest(){
         int count = 0;
+        //checks if car any passengers on board
         if (this.passengerList.size() > 0){
             System.out.println("\tPassengers:");
+            //iterates through passenger list
             for (Passenger passenger: this.passengerList){
+                //lists names of passengers in numbered list
                 count += 1;
                 System.out.println("\t" + count + ". " + passenger.getName());
             }

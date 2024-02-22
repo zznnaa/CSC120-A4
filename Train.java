@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Iterator;
 
 public class Train {
 
@@ -11,11 +12,14 @@ public class Train {
         int count = 0;
         this.engine = new Engine(fuelType, fuelCapacity);
         this.carList = new ArrayList<Car>(nCars);
-        for (int i = 0; i <= nCars; i++){
-            count += 1;
+        //adds new cars to the arraylist carList while the array size is less than the capacity of the train
+        while (this.carList.size() <= nCars){
+            //creates a new temporary car
             Car tempCar = new Car(passengerCapacity);
             String newName = "Car" + String.valueOf(count);
+            //assigns name to new car
             tempCar.assignName(newName);
+            //adds car to carList
             this.carList.add(tempCar);
         }
         
@@ -39,6 +43,7 @@ public class Train {
         newCar.assignName(newName);
         //need to expand size of array to be able to add new cars
         this.carList.add(newCar);
+        System.out.println(newCar.getName() + " was added to the train!");
     }
 
     //remove car method
@@ -47,22 +52,25 @@ public class Train {
         i -= 1;
         //check if car in train
         if (i <= this.carList.size()){
-            //check if people on car
-            if (this.carList.get(i).passengerList.size() > 0){
-            //remove passengers from car
-            for (Passenger p:this.carList.get(i).passengerList){
-                p.getOffCar(this.carList.get(i));
-            }
-        }
-        //remove car
-        this.carList.remove(i);
+            //remove car
+            System.out.println(this.carList.get(i).getName() + " was removed from the train!");
+            this.carList.remove(i);
+            updateCarNames();
         } else {
             System.out.println("That car is not contained in the train.");
-        } 
-    }
+            }
+        }
 
-    //REMOVE METHOD THROWING CONCURRENT MODIFICATION ERROR SO NEED TO USE AN ITERATOR
-    //MAKE METHOD TO UPDATE NAMES OF CARS SO THEYRE ACCURATE AFTER REMOVAL
+    public void updateCarNames(){
+        Iterator<Car> it = this.carList.iterator();
+        while (it.hasNext()){
+            //get car position in train
+            Car car = it.next();
+            int carNum = this.carList.indexOf(car) + 1;
+            //assign name equal to index
+            car.assignName("Car" + String.valueOf(carNum));
+        }
+    }
 
     //getters
     public Engine getEngine(){
@@ -91,11 +99,12 @@ public class Train {
     public static void main(String[] args) {
         Train train = new Train(FuelType.ELECTRIC, 100.0, 3, 5);
         Passenger pass1 = new Passenger("Zoe");
-        pass1.boardCar(train.carList.get(3));
+        Passenger pass2 = new Passenger("Marianna");
+        pass1.boardCar(train.carList.get(1));
         train.addCar();
+        pass2.boardCar(train.carList.get(4));
+        pass2.getOffCar(train.carList.get(4));
+        train.removeCar(2);
         train.printManifest();
-        train.removeCar(4);
-        train.printManifest();
-        //load 4 passengers on the train
     }
 }

@@ -9,7 +9,7 @@ public class Engine {
     private double maxFuel;
 
     //constructor
-    public Engine(FuelType fuelType, double maxFuel){
+    public Engine(FuelType fuelType, double maxFuel) {
         this.fuelType = fuelType;
         this.maxFuel = maxFuel;
         this.currentFuel = maxFuel;
@@ -17,18 +17,24 @@ public class Engine {
     }
 
     //methods
-    public void refuel(){
+    public void refuel() {
         //reset current fuel level to maximum
         this.currentFuel = this.maxFuel;
     }
 
-    public boolean go(){
+    /**
+     * Allows train to go by decreasing current fuel level by 25.
+     * 
+     * @return T/F whether the current fuel level is above 0
+     */
+
+    public boolean go() {
         //decrease current fuel level
         this.currentFuel = this.currentFuel - 25;
         //print some useful information (remaining fuel level)
         System.out.println("Remaning Fuel Level:" + this.currentFuel);
         //return true if fuel level is above 0 and false otherwise
-        if (this.currentFuel>0){
+        if (this.currentFuel > 0) {
             return true;
         } else {
             return false;
@@ -36,15 +42,15 @@ public class Engine {
     }
 
     //accessors
-    public FuelType getFuelType(){
+    public FuelType getFuelType() {
         return this.fuelType;
     }
 
-    public double getMaxFuel(){
+    public double getMaxFuel() {
         return this.maxFuel;
     }
 
-    public double getCurrentFuel(){
+    public double getCurrentFuel() {
         return this.currentFuel;
     }
 
